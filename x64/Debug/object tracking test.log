@@ -1,7 +1,5 @@
 ﻿  Source.cpp
-c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(27): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(57): warning C4474: 'sprintf' : too many arguments passed for format string
-  c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(57): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(58): warning C4474: 'sprintf' : too many arguments passed for format string
   c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(58): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
 c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(59): warning C4474: 'sprintf' : too many arguments passed for format string
@@ -12,7 +10,9 @@ c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp
   c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(61): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
 c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(62): warning C4474: 'sprintf' : too many arguments passed for format string
   c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(62): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(121): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(134): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(135): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(63): warning C4474: 'sprintf' : too many arguments passed for format string
+  c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(63): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(122): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(131): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\zeepu\source\repos\object tracking test\object tracking test\source.cpp(132): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   object tracking test.vcxproj -> C:\Users\ZeePu\source\repos\object tracking test\x64\Debug\object tracking test.exe

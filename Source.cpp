@@ -11,10 +11,10 @@ using namespace std;
 using namespace cv;
 //initial min and max HSV filter values.
 int H_MIN = 0;
-int H_MAX = 256;
-int S_MIN = 0;
+int H_MAX = 30;
+int S_MIN = 147;
 int S_MAX = 256;
-int V_MIN = 0;
+int V_MIN = 124;
 int V_MAX = 256;
 //default capture width and height
 const int FRAME_WIDTH = 640;
@@ -25,6 +25,8 @@ const int MAX_NUM_OBJECTS = 50;
 const int MIN_OBJECT_AREA = 20 * 20;
 const int MAX_OBJECT_AREA = FRAME_HEIGHT * FRAME_WIDTH / 1.5;
 //names that will appear at the top of each window
+
+
 const string windowName = "Original Image";
 const string windowName1 = "HSV Image";
 const string windowName2 = "Thresholded Image";
@@ -93,7 +95,7 @@ void morphOps(Mat &thresh) {
 
 
 }
-void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed) {
+void trackFilteredObject(int &x, int &y, Mat threshold, Mat &imagebox) {//cam feed
 
 	Mat temp;
 	threshold.copyTo(temp);
@@ -136,7 +138,7 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed) {
 
 			}
 			if (objectFound == true) {
-				putText(cameraFeed, "Tracking Object", Point(0, 50), 2, 1, Scalar(0, 255, 0), 2);
+				putText(imagebox, "Tracking Object", Point(0, 50), 2, 1, Scalar(0, 255, 0), 2);
 				for (int i = 0; i < contours.size(); i++)
 				{
 					//imshow("box", drawing);
@@ -144,9 +146,9 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed) {
 					// rotated rectangle
 					Point2f rect_points[4]; minRect[i].points(rect_points);
 					for (int j = 1; j < 2; j++) {
-						line(cameraFeed, rect_points[j], rect_points[(j + 1) % 4], color, 1, 8);
+						line(imagebox, rect_points[j], rect_points[(j + 1) % 4], color, 1, 8);
 					}
-					circle(cameraFeed, rect_points[1], 20, Scalar(0, 255, 0), 1, 8, 0);
+					circle(imagebox, rect_points[1], 20, Scalar(0, 255, 0), 1, 8, 0);
 					double h1 = rect_points[1].y;
 					double h2 = rect_points[2].y;
 					double hd = h2 - h1;
@@ -170,7 +172,7 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed) {
 
 		}
 
-		else putText(cameraFeed, "TOO MUCH NOISE! ADJUST FILTER", Point(0, 50), 1, 2, Scalar(0, 0, 255), 2);
+		else putText(imagebox, "TOO MUCH NOISE! ADJUST FILTER", Point(0, 50), 1, 2, Scalar(0, 0, 255), 2);
 	}
 }
 int main(int argc, char* argv[])
@@ -180,6 +182,8 @@ int main(int argc, char* argv[])
 	Mat cameraFeed;
 	Mat HSV;
 	Mat threshold;
+	Mat imagebox = imread("C:\\Users\\ZeePu\\source\\repos\\object tracking test\\object tracking test\\Box.jpg", CV_LOAD_IMAGE_COLOR);
+
 	int x = 0, y = 0;
 	createTrackbars();
 	VideoCapture capture;
@@ -188,17 +192,19 @@ int main(int argc, char* argv[])
 	capture.set(CV_CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
 	while (1) {
 		capture.read(cameraFeed);
-		cvtColor(cameraFeed, HSV, COLOR_BGR2HSV);
+		cvtColor(imagebox, HSV, COLOR_BGR2HSV);//camfeed
 		//threshold matrix
 		inRange(HSV, Scalar(H_MIN, S_MIN, V_MIN), Scalar(H_MAX, S_MAX, V_MAX), threshold);
 		if (useMorphOps)
 			morphOps(threshold);
 		if (trackObjects)
 			trackFilteredObject(x, y, threshold, cameraFeed);
-
+		
+		imshow("box", imagebox);
 	
 		imshow(windowName2, threshold);
-		imshow(windowName, cameraFeed);
+		
+		//imshow(windowName, cameraFeed);
 		//imshow(windowName1, HSV);
 		
 
